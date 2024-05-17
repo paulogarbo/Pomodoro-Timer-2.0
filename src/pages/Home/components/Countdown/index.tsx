@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react'
-import { CountdownContainer, Separator } from './styles'
 import { differenceInSeconds } from 'date-fns'
-import { CyclesContext } from '../..'
+import { CountdownContainer, Separator } from './styles'
+import { CyclesContext } from '../../../../contexts/CyclesContext'
 
 export function CountDown() {
   const {
@@ -36,13 +36,8 @@ export function CountDown() {
     return () => {
       clearInterval(interval)
     }
-  }, [
-    activeCycle,
-    totalSeconds,
-    activeCycleId,
-    markCurrentCycleAsFinished,
-    setSecondsPassed,
-  ])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeCycle, totalSeconds, activeCycleId])
 
   const currentSeconds = activeCycle ? totalSeconds - amountSecondsPassed : 0
 
